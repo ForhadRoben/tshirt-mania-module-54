@@ -1,12 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import About from './components/About/About';
-import Main from './layouts/Main';
-import Shop from './components/Shop/Shop';
+import Grandpa from './components/Grandpa/Grandpa';
+import Home from './components/Home/Home';
 import Orders from './components/Orders/Orders';
-import Inventory from './components/Inventory/Inventory';
-import { productsAndCartLoader } from './loaders/productsAndCartLoader';
-
+import Main from './layouts/Main';
 
 function App() {
   const router = createBrowserRouter([
@@ -16,28 +13,22 @@ function App() {
       children: [
         {
           path: '/',
-          loader: () => fetch('products.json'),
-          element: <Shop></Shop>
+          loader: () => fetch('tshirts.json'), 
+          element: <Home></Home>
         },
         {
-          path:'orders',
-          loader: productsAndCartLoader,
+          path: '/orders',
           element: <Orders></Orders>
         },
         {
-          path: 'inventory',
-          element: <Inventory></Inventory>
-        },
-        {
-          path:'about',
-          element:<About></About>
+          path:'/grandpa',
+          element: <Grandpa></Grandpa>
         }
       ]
-    },
-    
+    }
   ])
   return (
-    <div>
+    <div className="App">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
